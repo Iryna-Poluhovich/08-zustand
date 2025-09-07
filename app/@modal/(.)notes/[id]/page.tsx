@@ -7,25 +7,20 @@ import {
 import NotePreviewClient from "./NotePreview.client";
 
 type NotePageProps = {
-  params: {
-    id: string; 
-  };
+  params: { id: string };
 };
-
 
 const NotePreviewPage = async ({ params }: NotePageProps) => {
   const { id } = params;
 
- 
   const queryClient = new QueryClient();
-
 
   await queryClient.prefetchQuery({
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
   });
 
-    return (
+  return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <NotePreviewClient id={id} />
     </HydrationBoundary>
