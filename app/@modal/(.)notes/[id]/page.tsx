@@ -3,11 +3,11 @@ import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query
 import NotePreviewClient from "./NotePreview.client";
 import type { Metadata } from "next";
 
-type NotePageProps = {
+type PageProps = {
   params: { id: string };
 };
 
-const NotePreviewPage = async ({ params }: NotePageProps) => {
+const NotePreviewPage = async ({ params }: PageProps) => {
   const { id } = params;
 
   const queryClient = new QueryClient();
@@ -26,7 +26,7 @@ const NotePreviewPage = async ({ params }: NotePageProps) => {
 
 export default NotePreviewPage;
 
-export const generateMetadata = async ({ params }: NotePageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
   const note = await fetchNoteById(params.id);
 
   return {
