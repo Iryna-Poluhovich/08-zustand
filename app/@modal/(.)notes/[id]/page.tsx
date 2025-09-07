@@ -1,10 +1,7 @@
 import { fetchNoteById } from "@/lib/api";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import NotePreviewClient from "./NotePreview.client";
+import type { Metadata } from "next";
 
 type NotePageProps = {
   params: { id: string };
@@ -28,3 +25,17 @@ const NotePreviewPage = async ({ params }: NotePageProps) => {
 };
 
 export default NotePreviewPage;
+
+export const generateMetadata = async ({ params }: NotePageProps): Promise<Metadata> => {
+  const note = await fetchNoteById(params.id);
+
+  return {
+    title: note.title,
+    description: note.content.slice(0, 160), // перші 160 символів як description
+    openGraph: {
+      title: note.title,
+      description: note.content.slice(0, 160),
+      url: `https://notehub.example.com/notes/${params.id}`,
+    },
+  };
+};
