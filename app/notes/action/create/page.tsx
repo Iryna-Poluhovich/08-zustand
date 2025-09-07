@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next";
 // import { useQuery } from "@tanstack/react-query"
 import NoteForm from "@/components/NoteForm/NoteForm";
