@@ -30,7 +30,7 @@ export default function NoteForm({ categories }: NoteFormProps) {
       const title = formData.get("title") as string
       const content = formData.get("content") as string
       const tag = formData.get("tag") as Tag
-      return await createNote(title, content, tag)
+      return await createNote({title, content, tag})
     },
     onSuccess: () => {
       Loading.remove()
