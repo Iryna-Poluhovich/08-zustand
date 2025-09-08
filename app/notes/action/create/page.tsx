@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CreateNotePage() {
-    const categories: Tag[] = [...getCategories];
+export default async function CreateNotePage() {
+  const categories: Tag[] = await getCategories();
 
   return (
     <main className={css.main}>
