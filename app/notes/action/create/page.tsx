@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 // import { useQuery } from "@tanstack/react-query"
 import NoteForm from "@/components/NoteForm/NoteForm";
 import { getCategories, type Tag } from "@/lib/api";
-import css from "@/app/page.module.css";
+import css from "./CreateNote.module.css";
 
 export const metadata: Metadata = {
   title: "Create a new note | NoteHub",
