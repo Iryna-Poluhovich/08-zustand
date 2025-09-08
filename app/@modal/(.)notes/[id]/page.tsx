@@ -8,7 +8,7 @@ type PageProps = {
 };
 
 const NotePreviewPage = async ({ params }: PageProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   const queryClient = new QueryClient();
 
