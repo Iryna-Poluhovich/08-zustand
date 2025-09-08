@@ -4,8 +4,8 @@ import { Routes } from "@/config/routes";
 import TagsMenu from "../TagsMenu/TagsMenu";
 import { getCategories } from "@/lib/api";
 
-const Header = () => {
-  const categories = [...getCategories];
+const Header = async () =>{
+  const categories = await getCategories();
 
   return (
     <header className={css.header}>
