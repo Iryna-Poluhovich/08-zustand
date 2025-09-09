@@ -12,10 +12,10 @@ import Link from "next/link"
 import css from "./Notes.client.module.css"
 
 interface NotesClientProps {
-  category: Exclude<Tag, "All"> | undefined
+  tag: Exclude<Tag, "All"> | undefined
 }
 
-const NotesClient = ({ category }: NotesClientProps) => {
+const NotesClient = ({ tag }: NotesClientProps) => {
   const [query, setQuery] = useState<string>("")
   const [debouncedQuery] = useDebounce(query, 300)
   const [page, setPage] = useState<number>(1)
@@ -26,8 +26,8 @@ const NotesClient = ({ category }: NotesClientProps) => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["notes", { search: debouncedQuery, page, category }],
-    queryFn: () => fetchNotes(debouncedQuery, page, undefined, category),
+    queryKey: ["notes", { search: debouncedQuery, page, tag }],
+    queryFn: () => fetchNotes(debouncedQuery, page, tag), 
     refetchOnMount: false,
     placeholderData: keepPreviousData,
   })

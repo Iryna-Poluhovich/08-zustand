@@ -4,7 +4,7 @@ import { createNote, type Tag } from "@/lib/api"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { Loading } from "notiflix"
 import toast from "react-hot-toast"
-import Link from "next/link"
+// import Link from "next/link"
 import { useRouter } from "next/navigation"
 import css from "./NoteForm.module.css"
 import { useNoteStore, initialDraft } from "@/lib/store/noteStore"
@@ -100,13 +100,17 @@ export default function NoteForm({ categories }: NoteFormProps) {
       </div>
 
       <div className={css.actions}>
-        <Link href="/notes" className={css.cancelButton}>
-          Cancel
-        </Link>
-        <button type="submit" className={css.submitButton}>
-          Create note
-        </button>
-      </div>
+  <button
+    type="button"
+    className={css.cancelButton}
+    onClick={() => router.back()}
+  >
+    Cancel
+  </button>
+  <button type="submit" className={css.submitButton}>
+    Create note
+  </button>
+</div>
     </form>
   )
 }

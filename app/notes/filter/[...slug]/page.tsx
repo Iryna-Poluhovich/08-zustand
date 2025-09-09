@@ -68,16 +68,16 @@ export const generateStaticParams = async () => {
 export default async function NotesFilter({ params }: NotesFilterProps) {
 	const queryClient = new QueryClient()
 	const { slug } = await params
-	const category = slug[0] === "All" ? undefined : slug[0]
+	const tag = slug[0] === "All" ? undefined : slug[0]
 
 	await queryClient.prefetchQuery({
-		queryKey: ["notes", { search: "", page: 1, category }],
-		queryFn: () => fetchNotes("", 1, undefined, category),
+		queryKey: ["notes", { search: "", page: 1, tag }],
+		queryFn: () => fetchNotes("", 1, tag),
 	})
 
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
-			<NotesClient category={category} />
+			<NotesClient tag={tag} />
 		</HydrationBoundary>
 	)
 }
